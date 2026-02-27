@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home — Web System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: block;">
+    <div class="page-wrapper">
+        <nav class="navbar">
+            <span class="nav-brand">Web System</span>
+            <div class="nav-right">
+                <span class="nav-user">Welcome, <strong id="displayUser"></strong></span>
+                <button class="btn-logout" onclick="logout()">Sign Out</button>
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <div class="welcome-card">
+                <div class="welcome-icon">&#9733;</div>
+                <h2>Welcome, <span id="displayUser2"></span>!</h2>
+                <p>You have successfully signed in to the Web System. Explore and enjoy your experience.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (let c of cookies) {
+                const [key, val] = c.split('=');
+                if (key === name) return decodeURIComponent(val);
+            }
+            return null;
+        }
+
+        const username = getCookie('web_system_user');
+        if (!username) {
+            window.location.href = 'login.html';
+        } else {
+            document.getElementById('displayUser').textContent = username;
+            document.getElementById('displayUser2').textContent = username;
+        }
+
+        function logout() {
+            document.cookie = 'web_system_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
