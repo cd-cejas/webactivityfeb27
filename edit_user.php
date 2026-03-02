@@ -91,6 +91,12 @@ $conn->close();
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <p style="color: #666; font-size: 14px; padding: 10px; background-color: #f5f5f5; border-radius: 4px;">
+                            <strong>Note:</strong> Password cannot be edited here. Use the "Reset Password" button from the dashboard to reset a user's password. The user will be prompted to create a new password upon login.
+                        </p>
+                    </div>
+
                     <div class="btn-row">
                         <a href="admin_dashboard.php" class="btn btn-secondary">Cancel</a>
                         <button type="submit" class="btn btn-primary">Update User</button>

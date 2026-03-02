@@ -30,7 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            if (password_verify($password, $user["password"])) {
+            // Check if password is NULL (reset by admin)
+            if ($user["password"] === null || $user["password"] === "") {
+                // Store user info in session for password change
+                $_SESSION["user_id"] = $user["id"];
+                $_SESSION["fullname"] = $user["fullname"];
+                $_SESSION["username"] = $user["username"];
+                $_SESSION["role"] = $user["role"];
+                $_SESSION["password_reset_by_admin"] = true;
+
+                $error = "password_reset_by_admin";
+            } elseif (password_verify($password, $user["password"])) {
                 // Set session variables
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["fullname"] = $user["fullname"];
@@ -73,17 +83,26 @@ $conn->close();
         <div class="card">
             <div class="brand">
                 <div class="brand-icon">W</div>
-                <h1>Sign In Failed</h1>
-                <p>We couldn't verify your credentials</p>
+                <?php if ($error === "password_reset_by_admin"): ?>
+                    <h1>Password Reset</h1>
+                    <p>Your password has been changed by an administrator</p>
+                <?php else: ?>
+                    <h1>Sign In Failed</h1>
+                    <p>We couldn't verify your credentials</p>
+                <?php endif; ?>
             </div>
 
-            <?php if (!empty($error)): ?>
+            <?php if ($error === "password_reset_by_admin"): ?>
+                <div class="alert alert-error">
+                    Password is reset by admin, please make another password.
+                </div>
+                <a href="create_password.php" class="btn btn-primary">Create New Password</a>
+            <?php elseif (!empty($error)): ?>
                 <div class="alert alert-error">
                     <?php echo htmlspecialchars($error); ?>
                 </div>
+                <a href="login.html" class="btn btn-primary">Try Again</a>
             <?php endif; ?>
-
-            <a href="login.html" class="btn btn-primary">Try Again</a>
 
             <div class="form-footer">
                 Don't have an account? <a href="signup.html">Create one</a>

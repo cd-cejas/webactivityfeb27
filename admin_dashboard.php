@@ -78,6 +78,12 @@ $conn->close();
                 </div>
             <?php endif; ?>
 
+            <?php if (isset($_GET["password_reset"])): ?>
+                <div class="alert alert-success" style="margin-bottom: 20px;">
+                    User password has been reset. User will be prompted to change password on next login.
+                </div>
+            <?php endif; ?>
+
             <div class="table-card">
                 <div class="table-card-header">
                     <h3>All Users</h3>
@@ -111,6 +117,9 @@ $conn->close();
                                     <td>
                                         <a href="edit_user.php?id=<?php echo $row["id"]; ?>" class="btn-edit">
                                             &#9998; Edit
+                                        </a>
+                                        <a href="reset_user_password.php?id=<?php echo $row["id"]; ?>" class="btn-edit" style="background-color: #ff6b6b; margin-left: 5px;" onclick="return confirm('Are you sure you want to reset this user\'s password?');">
+                                            🔑 Reset Password
                                         </a>
                                     </td>
                                 </tr>
