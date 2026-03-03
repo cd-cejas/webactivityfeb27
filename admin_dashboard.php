@@ -118,9 +118,11 @@ $conn->close();
                                         <a href="edit_user.php?id=<?php echo $row["id"]; ?>" class="btn-edit">
                                             &#9998; Edit
                                         </a>
+                                        <?php if ($row["role"] !== "admin"): ?>
                                         <a href="reset_user_password.php?id=<?php echo $row["id"]; ?>" class="btn-edit" style="background-color: #ff6b6b; margin-left: 5px;" onclick="return confirm('Are you sure you want to reset this user\'s password?');">
                                             🔑 Reset Password
                                         </a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

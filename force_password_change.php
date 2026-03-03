@@ -28,11 +28,11 @@ $user = $result->fetch_assoc();
 $stmt->close();
 
 // If user has a password, redirect to dashboard
-if (!empty($user) && $user["password"] !== null) {
+if (!empty($user) && $user["password"] !== null && $user["password"] !== "") {
     if ($_SESSION["role"] === "admin") {
         header("Location: admin_dashboard.php");
     } else {
-        header("Location: menu.html");
+        header("Location: homepage.html");
     }
     exit();
 }
@@ -59,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $update->execute();
         $update->close();
 
+        // Set cookie for homepage.html to read username
+        setcookie("web_system_user", $_SESSION["username"], time() + 3600, "/");
+
         $success = "Password changed successfully! Redirecting...";
         
         // Redirect after 2 seconds
@@ -71,18 +74,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <title>Password Changed — Web System</title>
             <link rel=\"stylesheet\" href=\"style.css\">
         </head>
-        <body style=\"display: block;\">
+        <body>
             <div class=\"container\">
                 <div class=\"card\">
                     <div class=\"alert alert-success\">
                         Password changed successfully!
                     </div>
-                    <p style=\"margin-bottom: 20px; color: #666;\">Redirecting you to your dashboard...</p>
+                    <p style=\"margin-bottom: 20px; color: #666; text-align: center;\">Redirecting you to your dashboard...</p>
                 </div>
             </div>
             <script>
                 setTimeout(function() {
-                    window.location.href = '" . ($_SESSION["role"] === "admin" ? "admin_dashboard.php" : "menu.html") . "';
+                    window.location.href = '" . ($_SESSION["role"] === "admin" ? "admin_dashboard.php" : "homepage.html") . "';
                 }, 2000);
             </script>
         </body>
@@ -119,6 +122,11 @@ $conn->close();
             <?php endif; ?>
 
             <form method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" value="<?php echo htmlspecialchars($_SESSION['username']); ?>" disabled readonly>
+                </div>
+
                 <div class="form-group">
                     <label for="new_password">New Password</label>
                     <input type="password" id="new_password" name="new_password" placeholder="Enter new password" required>

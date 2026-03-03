@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST["username"] ?? "");
     $password = $_POST["password"] ?? "";
 
-    if (empty($username) || empty($password)) {
-        $error = "Please enter both username and password.";
+    if (empty($username)) {
+        $error = "Please enter your username.";
     } else {
         $stmt = $conn->prepare("SELECT id, fullname, username, password, role FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
@@ -39,7 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["role"] = $user["role"];
                 $_SESSION["password_reset_by_admin"] = true;
 
-                $error = "password_reset_by_admin";
+                // Redirect directly to force password change page
+                header("Location: force_password_change.php");
+                exit();
+            } elseif (empty($password)) {
+                $error = "Please enter your password.";
             } elseif (password_verify($password, $user["password"])) {
                 // Set session variables
                 $_SESSION["user_id"] = $user["id"];
@@ -47,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["username"] = $user["username"];
                 $_SESSION["role"] = $user["role"];
 
-                // Set cookie for menu.html to read username
+                // Set cookie for homepage.html to read username
                 setcookie("web_system_user", $user["username"], time() + 3600, "/");
 
                 // Redirect based on role
@@ -55,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     header("Location: admin_dashboard.php");
                     exit();
                 } else {
-                    header("Location: menu.html");
+                    header("Location: homepage.html");
                     exit();
                 }
             } else {
@@ -83,21 +87,11 @@ $conn->close();
         <div class="card">
             <div class="brand">
                 <div class="brand-icon">W</div>
-                <?php if ($error === "password_reset_by_admin"): ?>
-                    <h1>Password Reset</h1>
-                    <p>Your password has been changed by an administrator</p>
-                <?php else: ?>
-                    <h1>Sign In Failed</h1>
-                    <p>We couldn't verify your credentials</p>
-                <?php endif; ?>
+                <h1>Sign In Failed</h1>
+                <p>We couldn't verify your credentials</p>
             </div>
 
-            <?php if ($error === "password_reset_by_admin"): ?>
-                <div class="alert alert-error">
-                    Password is reset by admin, please make another password.
-                </div>
-                <a href="create_password.php" class="btn btn-primary">Create New Password</a>
-            <?php elseif (!empty($error)): ?>
+            <?php if (!empty($error)): ?>
                 <div class="alert alert-error">
                     <?php echo htmlspecialchars($error); ?>
                 </div>

@@ -70,9 +70,28 @@ if ($stmt2->num_rows > 0) {
 }
 $stmt2->close();
 
-// Update user
-$update = $conn->prepare("UPDATE users SET fullname = ?, email = ?, username = ?, role = ? WHERE id = ?");
-$update->bind_param("ssssi", $fullname, $email, $username, $role, $id);
+// Handle password change for admin users
+$new_password = trim($_POST["new_password"] ?? "");
+$confirm_password = trim($_POST["confirm_password"] ?? "");
+
+if (!empty($new_password)) {
+    if ($new_password !== $confirm_password) {
+        $conn->close();
+        header("Location: edit_user.php?id=" . $id . "&error=password_mismatch");
+        exit();
+    }
+    if (strlen($new_password) < 6) {
+        $conn->close();
+        header("Location: edit_user.php?id=" . $id . "&error=password_short");
+        exit();
+    }
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+    $update = $conn->prepare("UPDATE users SET fullname = ?, email = ?, username = ?, role = ?, password = ? WHERE id = ?");
+    $update->bind_param("sssssi", $fullname, $email, $username, $role, $hashed_password, $id);
+} else {
+    $update = $conn->prepare("UPDATE users SET fullname = ?, email = ?, username = ?, role = ? WHERE id = ?");
+    $update->bind_param("ssssi", $fullname, $email, $username, $role, $id);
+}
 $update->execute();
 $update->close();
 

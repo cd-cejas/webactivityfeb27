@@ -65,6 +65,20 @@ $conn->close();
             <div class="edit-card">
                 <h2>Edit User #<?php echo $user["id"]; ?></h2>
 
+                <?php if (isset($_GET["error"])): ?>
+                    <div class="alert alert-error" style="margin-bottom: 15px;">
+                        <?php
+                        switch ($_GET["error"]) {
+                            case "username_taken": echo "Username is already taken."; break;
+                            case "email_taken": echo "Email is already taken."; break;
+                            case "password_mismatch": echo "Passwords do not match."; break;
+                            case "password_short": echo "Password must be at least 6 characters."; break;
+                            default: echo "An error occurred.";
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
+
                 <form method="POST" action="update_user.php">
                     <input type="hidden" name="id" value="<?php echo $user["id"]; ?>">
 
@@ -91,11 +105,23 @@ $conn->close();
                         </select>
                     </div>
 
+                    <?php if ($user["role"] === "admin"): ?>
+                    <div class="form-group">
+                        <label for="new_password">New Password</label>
+                        <input type="password" id="new_password" name="new_password" placeholder="Leave blank to keep current password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password">
+                    </div>
+                    <?php else: ?>
                     <div class="form-group">
                         <p style="color: #666; font-size: 14px; padding: 10px; background-color: #f5f5f5; border-radius: 4px;">
-                            <strong>Note:</strong> Password cannot be edited here. Use the "Reset Password" button from the dashboard to reset a user's password. The user will be prompted to create a new password upon login.
+                            <strong>Note:</strong> To reset this user's password, use the "Reset Password" button from the dashboard. The user will be prompted to create a new password upon login.
                         </p>
                     </div>
+                    <?php endif; ?>
 
                     <div class="btn-row">
                         <a href="admin_dashboard.php" class="btn btn-secondary">Cancel</a>
