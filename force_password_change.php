@@ -103,14 +103,15 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Password — Web System</title>
+    <title>Change Password — Crossover Apparel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="overlay-backdrop"></div>
     <div class="container">
         <div class="card">
             <div class="brand">
-                <div class="brand-icon">W</div>
+                <img src="images/crossoverlogo.png" alt="Crossover" class="brand-icon">
                 <h1>Change Password</h1>
                 <p>Your password needs to be set before you can continue</p>
             </div>

@@ -4,152 +4,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrossOver Apparel 2.0</title>
-    <link rel="stylesheet" href="homestyle.css" />
+    <title>Crossover Apparel 2.0</title>
+    <link rel="stylesheet" href="homestyle.css">
 </head>
 
 <body>
-    <header class="page-header">
-        <img src="/images/crossoverlogo.png" alt="Crossover Logo" class="toplogo" width="150">
-        <h1>Welcome to Crossover Apparel 2.0</h1>
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </header>
+
+    <!-- ========== Navigation ========== -->
+    <nav class="site-nav">
+        <a class="nav-brand" href="#">
+            <img src="images/crossoverlogo.png" alt="Crossover">
+            <span>Crossover Apparel</span>
+        </a>
+        <div class="nav-links">
+            <a href="#products" class="nav-link active">Shop</a>
+            <a href="#" class="nav-link" onclick="openZapierChat(); return false;">AI Assistant</a>
+            <button class="nav-btn logout" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- ========== Hero Section ========== -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span class="dot"></span> New Collection Live
+        </div>
+        <h1>Your style,<br><span class="highlight">instantly</span> elevated.</h1>
+        <p class="hero-sub">
+            Premium streetwear and apparel curated by AI. Browse, add to cart, and check out — all in one seamless experience.
+        </p>
+        <div class="hero-actions">
+            <a href="#products" class="hero-btn primary">Browse Collection <span class="icon">→</span></a>
+            <a href="#" class="hero-btn secondary" onclick="openZapierChat(); return false;">Ask AI Assistant <span class="icon">✦</span></a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- ========== Ticker ========== -->
+    <div class="ticker">
+        <div class="ticker-track">
+            <span class="ticker-item">Streetwear</span>
+            <span class="ticker-item">Premium Quality</span>
+            <span class="ticker-item">AI-Powered</span>
+            <span class="ticker-item">Fast Checkout</span>
+            <span class="ticker-item">New Arrivals</span>
+            <span class="ticker-item">Crossover Apparel</span>
+            <span class="ticker-item">Free Shipping $50+</span>
+            <span class="ticker-item">Streetwear</span>
+            <span class="ticker-item">Premium Quality</span>
+            <span class="ticker-item">AI-Powered</span>
+            <span class="ticker-item">Fast Checkout</span>
+            <span class="ticker-item">New Arrivals</span>
+            <span class="ticker-item">Crossover Apparel</span>
+            <span class="ticker-item">Free Shipping $50+</span>
+        </div>
+    </div>
+
+    <!-- ========== Products ========== -->
+    <div class="section-header" id="products">
+        <h2>The Collection.</h2>
+        <p>Explore our curated lineup of premium apparel.</p>
+    </div>
 
     <div class="product-section">
         <div class="product-grid">
             <div class="product">
-                <img src="/images/1.jpg" alt="Product 1" width="50">
+                <img src="images/1.jpg" alt="Product 1">
                 <h3>Product 1</h3>
                 <p>$19.99</p>
                 <button class="add-to-cart" data-name="Product 1" data-price="19.99">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/2.jpg" alt="Product 2" width="50">
+                <img src="images/2.jpg" alt="Product 2">
                 <h3>Product 2</h3>
                 <p>$20.00</p>
                 <button class="add-to-cart" data-name="Product 2" data-price="20.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/3.jpg" alt="Product 3" width="50">
+                <img src="images/3.jpg" alt="Product 3">
                 <h3>Product 3</h3>
                 <p>$21.00</p>
                 <button class="add-to-cart" data-name="Product 3" data-price="21.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/4.jpg" alt="Product 4" width="50">
+                <img src="images/4.jpg" alt="Product 4">
                 <h3>Product 4</h3>
                 <p>$22.00</p>
                 <button class="add-to-cart" data-name="Product 4" data-price="22.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/5.jpg" alt="Product 5" width="50">
+                <img src="images/5.jpg" alt="Product 5">
                 <h3>Product 5</h3>
                 <p>$23.00</p>
                 <button class="add-to-cart" data-name="Product 5" data-price="23.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/6.jpg" alt="Product 6" width="50">
+                <img src="images/6.jpg" alt="Product 6">
                 <h3>Product 6</h3>
                 <p>$24.00</p>
                 <button class="add-to-cart" data-name="Product 6" data-price="24.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/7.jpg" alt="Product 7" width="50">
+                <img src="images/7.jpg" alt="Product 7">
                 <h3>Product 7</h3>
                 <p>$25.00</p>
                 <button class="add-to-cart" data-name="Product 7" data-price="25.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/8.jpg" alt="Product 8" width="50">
+                <img src="images/8.jpg" alt="Product 8">
                 <h3>Product 8</h3>
                 <p>$26.00</p>
                 <button class="add-to-cart" data-name="Product 8" data-price="26.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/9.jpg" alt="Product 9" width="50">
+                <img src="images/9.jpg" alt="Product 9">
                 <h3>Product 9</h3>
                 <p>$27.00</p>
                 <button class="add-to-cart" data-name="Product 9" data-price="27.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/10.jpg" alt="Product 10" width="50">
+                <img src="images/10.jpg" alt="Product 10">
                 <h3>Product 10</h3>
                 <p>$28.00</p>
                 <button class="add-to-cart" data-name="Product 10" data-price="28.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/11.jpg" alt="Product 11" width="50">
+                <img src="images/11.jpg" alt="Product 11">
                 <h3>Product 11</h3>
                 <p>$29.00</p>
                 <button class="add-to-cart" data-name="Product 11" data-price="29.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/12.jpg" alt="Product 12" width="50">
+                <img src="images/12.jpg" alt="Product 12">
                 <h3>Product 12</h3>
                 <p>$30.00</p>
                 <button class="add-to-cart" data-name="Product 12" data-price="30.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/13.jpg" alt="Product 13" width="50">
+                <img src="images/13.jpg" alt="Product 13">
                 <h3>Product 13</h3>
                 <p>$31.00</p>
                 <button class="add-to-cart" data-name="Product 13" data-price="31.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/14.jpg" alt="Product 14" width="50">
+                <img src="images/14.jpg" alt="Product 14">
                 <h3>Product 14</h3>
                 <p>$32.00</p>
                 <button class="add-to-cart" data-name="Product 14" data-price="32.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/15.jpg" alt="Product 15" width="50">
+                <img src="images/15.jpg" alt="Product 15">
                 <h3>Product 15</h3>
                 <p>$32.00</p>
                 <button class="add-to-cart" data-name="Product 15" data-price="32.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/16.jpg" alt="Product 16" width="50">
+                <img src="images/16.jpg" alt="Product 16">
                 <h3>Product 16</h3>
                 <p>$33.00</p>
                 <button class="add-to-cart" data-name="Product 16" data-price="33.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/crossoverlogo.png" alt="Product 17" width="50">
+                <img src="images/crossoverlogo.png" alt="Product 17">
                 <h3>Product 17</h3>
                 <p>$34.00</p>
                 <button class="add-to-cart" data-name="Product 17" data-price="34.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/crossoverlogo.png" alt="Product 18" width="50">
+                <img src="images/crossoverlogo.png" alt="Product 18">
                 <h3>Product 18</h3>
                 <p>$35.00</p>
                 <button class="add-to-cart" data-name="Product 18" data-price="35.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/crossoverlogo.png" alt="Product 19" width="50">
+                <img src="images/crossoverlogo.png" alt="Product 19">
                 <h3>Product 19</h3>
                 <p>$30.00</p>
                 <button class="add-to-cart" data-name="Product 19" data-price="30.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/crossoverlogo.png" alt="Product 20" width="50">
+                <img src="images/crossoverlogo.png" alt="Product 20">
                 <h3>Product 20</h3>
                 <p>$30.00</p>
                 <button class="add-to-cart" data-name="Product 20" data-price="30.00">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="/images/crossoverlogo.png" alt="Product 21" width="50">
-                <h3>Product 21 </h3>
+                <img src="images/crossoverlogo.png" alt="Product 21">
+                <h3>Product 21</h3>
                 <p>$30.00</p>
                 <button class="add-to-cart" data-name="Product 21" data-price="30.00">Add to Cart</button>
             </div>
-
         </div>
     </div>
-    <aside class="cart-panel" aria-label="Shopping cart">
+
+    <!-- ========== Zapier Chatbot ========== -->
+    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmmeipjdf00rx10bg7zr8p8ne'></zapier-interfaces-chatbot-embed>
+
+    <!-- ========== Cart Toggle Button ========== -->
+    <button class="cart-toggle-btn" id="cartToggle" onclick="toggleCart()" aria-label="Open cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <!-- ========== Cart Popup Panel ========== -->
+    <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
         <div class="cart-header">
             <h2>Your Cart</h2>
             <span class="cart-count">0 items</span>
+            <button class="cart-close-btn" onclick="toggleCart()" aria-label="Close cart">&#x2715;</button>
         </div>
         <div class="cart-columns">
             <span>Product</span>
@@ -168,7 +236,20 @@
             <button class="checkout-btn">Proceed to Buy</button>
         </div>
     </aside>
+
+    <!-- ========== Footer ========== -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Crossover Apparel. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+
+    <!-- ========== Scripts ========== -->
     <script>
+        // Auth check
         function getCookie(name) {
             const cookies = document.cookie.split('; ');
             for (let c of cookies) {
@@ -182,126 +263,129 @@
             window.location.replace('login.html');
         }
 
-        // Logout function
+        // Logout
         function logout() {
             document.cookie = 'web_system_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             localStorage.removeItem('cart');
             window.location.href = 'logout.php';
         }
 
-        // Initialize cart from localStorage or empty array
+        // Cart
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        // Get DOM elements
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
         const cartItemsContainer = document.querySelector('.cart-items');
         const cartCountSpan = document.querySelector('.cart-count');
         const cartSummaryRow = document.querySelector('.cart-summary-row strong');
 
-        // Add event listeners to all "Add to Cart" buttons
         addToCartButtons.forEach(button => {
             button.addEventListener('click', function() {
-                const productName = this.getAttribute('data-name');
-                const productPrice = parseFloat(this.getAttribute('data-price'));
-
-                addToCart(productName, productPrice);
+                addToCart(this.getAttribute('data-name'), parseFloat(this.getAttribute('data-price')));
             });
         });
 
-        // Function to add item to cart
         function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    name: name,
-                    price: price,
-                    quantity: 1
-                });
-            }
-
+            const existing = cart.find(i => i.name === name);
+            if (existing) existing.quantity += 1;
+            else cart.push({
+                name,
+                price,
+                quantity: 1
+            });
             saveCart();
             renderCart();
+            openCart();
         }
 
-        // Function to save cart to localStorage
+        function openCart() {
+            document.getElementById('cartPanel').classList.add('open');
+        }
+
+        function toggleCart() {
+            document.getElementById('cartPanel').classList.toggle('open');
+        }
+
         function saveCart() {
             localStorage.setItem('cart', JSON.stringify(cart));
         }
 
-        // Function to render cart items
         function renderCart() {
-            // Clear existing items
             cartItemsContainer.innerHTML = '';
-
+            let total = 0,
+                count = 0;
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<div class="cart-empty">No items added yet.</div>';
                 cartCountSpan.textContent = '0 items';
                 cartSummaryRow.textContent = '$0.00';
-                return;
-            }
-
-            let totalPrice = 0;
-            let totalItems = 0;
-
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                totalPrice += itemTotal;
-                totalItems += item.quantity;
-
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
+            } else {
+                cart.forEach((item, i) => {
+                    const sub = item.price * item.quantity;
+                    total += sub;
+                    count += item.quantity;
+                    const el = document.createElement('div');
+                    el.className = 'cart-item';
+                    el.innerHTML = `
                     <div class="cart-item-content">
                         <span class="item-name">${item.name}</span>
                         <span class="item-price">$${item.price.toFixed(2)}</span>
                         <div class="item-quantity">
-                            <button class="qty-btn" onclick="decreaseQuantity(${index})">-</button>
+                            <button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
                             <span>${item.quantity}</span>
-                            <button class="qty-btn" onclick="increaseQuantity(${index})">+</button>
+                            <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
                         </div>
-                        <span class="item-total">$${itemTotal.toFixed(2)}</span>
-                        <button class="remove-btn" onclick="removeFromCart(${index})">&times;</button>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(cartItem);
-            });
-
-            cartCountSpan.textContent = `${totalItems} item${totalItems !== 1 ? 's' : ''}`;
-            cartSummaryRow.textContent = `$${totalPrice.toFixed(2)}`;
+                        <span class="item-total">$${sub.toFixed(2)}</span>
+                        <button class="remove-btn" onclick="removeItem(${i})">&times;</button>
+                    </div>`;
+                    cartItemsContainer.appendChild(el);
+                });
+                cartCountSpan.textContent = `${count} item${count !== 1 ? 's' : ''}`;
+                cartSummaryRow.textContent = `$${total.toFixed(2)}`;
+            }
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                badge.textContent = count;
+                badge.classList.toggle('visible', count > 0);
+            }
         }
 
-        // Function to increase quantity
-        window.increaseQuantity = function(index) {
-            cart[index].quantity += 1;
+        window.changeQty = function(i, d) {
+            cart[i].quantity += d;
+            if (cart[i].quantity < 1) cart.splice(i, 1);
             saveCart();
             renderCart();
         };
 
-        // Function to decrease quantity
-        window.decreaseQuantity = function(index) {
-            if (cart[index].quantity > 1) {
-                cart[index].quantity -= 1;
-            } else {
-                removeFromCart(index);
-                return;
-            }
+        window.removeItem = function(i) {
+            cart.splice(i, 1);
             saveCart();
             renderCart();
         };
 
-        // Function to remove item from cart
-        window.removeFromCart = function(index) {
-            cart.splice(index, 1);
-            saveCart();
-            renderCart();
-        };
-
-        // Initial render on page load
         renderCart();
+
+        // Open Zapier chatbot
+        function openZapierChat() {
+            const embed = document.querySelector('zapier-interfaces-chatbot-embed');
+            if (embed && embed.shadowRoot) {
+                const btn = embed.shadowRoot.querySelector('button');
+                if (btn) btn.click();
+            }
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const href = a.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
     </script>
+
 </body>
 
 </html>

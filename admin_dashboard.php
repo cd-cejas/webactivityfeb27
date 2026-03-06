@@ -40,13 +40,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard — Web System</title>
+    <title>Admin Dashboard — Crossover Apparel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="display: block;">
+<body class="dashboard-page">
     <div class="dashboard-wrapper">
         <header class="dashboard-header">
-            <span class="nav-brand">Web System &mdash; Admin</span>
+            <a href="admin_dashboard.php" class="nav-brand"><img src="images/crossoverlogo.png" alt="Logo"> Crossover Apparel</a>
             <div class="nav-right">
                 <span class="nav-user">Signed in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong></span>
                 <a href="logout.php" class="btn-logout">Sign Out</a>
@@ -115,20 +116,22 @@ $conn->close();
                                     </td>
                                     <td><?php echo $row["date_registered"]; ?></td>
                                     <td>
-                                        <a href="edit_user.php?id=<?php echo $row["id"]; ?>" class="btn-edit">
-                                            &#9998; Edit
-                                        </a>
-                                        <?php if ($row["role"] !== "admin"): ?>
-                                        <a href="reset_user_password.php?id=<?php echo $row["id"]; ?>" class="btn-edit" style="background-color: #ff6b6b; margin-left: 5px;" onclick="return confirm('Are you sure you want to reset this user\'s password?');">
-                                            🔑 Reset Password
-                                        </a>
-                                        <?php endif; ?>
+                                        <div class="action-buttons">
+                                            <a href="edit_user.php?id=<?php echo $row["id"]; ?>" class="btn-edit">
+                                                &#9998; Edit
+                                            </a>
+                                            <?php if ($row["role"] !== "admin"): ?>
+                                            <a href="reset_user_password.php?id=<?php echo $row["id"]; ?>" class="btn-reset" onclick="return confirm('Are you sure you want to reset this user\'s password?');">
+                                                &#128273; Reset
+                                            </a>
+                                            <?php endif; ?>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="7" style="text-align: center; color: #7B7F85;">No users found.</td>
+                                <td colspan="7" style="text-align: center; color: rgba(255,255,255,0.3); padding: 40px 0;">No users found.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>

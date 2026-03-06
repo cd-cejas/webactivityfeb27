@@ -79,14 +79,15 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In — Web System</title>
+    <title>Sign In — Crossover Apparel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="overlay-backdrop"></div>
     <div class="container">
         <div class="card">
             <div class="brand">
-                <div class="brand-icon">W</div>
+                <img src="images/crossoverlogo.png" alt="Crossover" class="brand-icon">
                 <h1>Sign In Failed</h1>
                 <p>We couldn't verify your credentials</p>
             </div>

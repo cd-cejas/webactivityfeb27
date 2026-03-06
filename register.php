@@ -86,14 +86,15 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration — Web System</title>
+    <title>Registration — Crossover Apparel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="overlay-backdrop"></div>
     <div class="container">
         <div class="card">
             <div class="brand">
-                <div class="brand-icon">W</div>
+                <img src="images/crossoverlogo.png" alt="Crossover" class="brand-icon">
                 <?php if (!empty($success)): ?>
                     <h1>Success!</h1>
                     <p>Your account has been created</p>
