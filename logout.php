@@ -6,6 +6,6 @@ session_destroy();
 // Clear the username cookie
 setcookie("web_system_user", "", time() - 3600, "/");
 
-header("Location: login.html");
+header("Location: homepage.html?auth=signin");
 exit();
 ?>

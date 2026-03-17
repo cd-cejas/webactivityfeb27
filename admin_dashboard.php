@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in and is admin
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
-    header("Location: login.html");
+    header("Location: homepage.html?auth=signin");
     exit();
 }
 
@@ -19,6 +19,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$conn->query("CREATE TABLE IF NOT EXISTS sales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    payment_method VARCHAR(50) NOT NULL DEFAULT 'Instapay',
+    items_json LONGTEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX (user_id),
+    INDEX (created_at)
+)");
+
 // Fetch all users
 $result = $conn->query("SELECT id, fullname, email, username, role, date_registered FROM users ORDER BY id ASC");
 
@@ -31,6 +45,19 @@ while ($row = $result->fetch_assoc()) {
     $rows[] = $row;
     if ($row["role"] === "admin") $admin_count++;
     else $user_count++;
+}
+
+$salesSummary = $conn->query("SELECT COUNT(*) AS total_orders, COALESCE(SUM(total_amount), 0) AS total_sales FROM sales");
+$salesData = $salesSummary ? $salesSummary->fetch_assoc() : ["total_orders" => 0, "total_sales" => 0];
+$total_orders = (int)($salesData["total_orders"] ?? 0);
+$total_sales = (float)($salesData["total_sales"] ?? 0);
+
+$salesRows = [];
+$salesResult = $conn->query("SELECT id, fullname, email, username, total_amount, payment_method, created_at FROM sales ORDER BY id DESC");
+if ($salesResult) {
+    while ($sale = $salesResult->fetch_assoc()) {
+        $salesRows[] = $sale;
+    }
 }
 
 $conn->close();
@@ -70,6 +97,14 @@ $conn->close();
                 <div class="stat-card">
                     <div class="stat-label">Regular Users</div>
                     <div class="stat-value"><?php echo $user_count; ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-value"><?php echo $total_orders; ?></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Sales</div>
+                    <div class="stat-value">&#8369;<?php echo number_format($total_sales, 2); ?></div>
                 </div>
             </div>
 
@@ -132,6 +167,44 @@ $conn->close();
                         <?php else: ?>
                             <tr>
                                 <td colspan="7" style="text-align: center; color: rgba(255,255,255,0.3); padding: 40px 0;">No users found.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-card sales-table-card">
+                <div class="table-card-header">
+                    <h3>Sales History</h3>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sale ID</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Total Paid</th>
+                            <th>Paid Through</th>
+                            <th>Date Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (count($salesRows) > 0): ?>
+                            <?php foreach ($salesRows as $sale): ?>
+                                <tr>
+                                    <td>#<?php echo $sale["id"]; ?></td>
+                                    <td><?php echo htmlspecialchars($sale["fullname"]); ?></td>
+                                    <td><?php echo htmlspecialchars($sale["email"]); ?></td>
+                                    <td><?php echo htmlspecialchars($sale["username"]); ?></td>
+                                    <td>&#8369;<?php echo number_format((float)$sale["total_amount"], 2); ?></td>
+                                    <td><?php echo htmlspecialchars($sale["payment_method"]); ?></td>
+                                    <td><?php echo $sale["created_at"]; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="7" style="text-align: center; color: rgba(255,255,255,0.3); padding: 40px 0;">No sales recorded yet.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>

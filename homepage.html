@@ -9,202 +9,169 @@
 </head>
 
 <body>
+    <div id="pageContent">
 
-    <!-- ========== Navigation ========== -->
-    <nav class="site-nav">
-        <a class="nav-brand" href="#">
-            <img src="images/crossoverlogo.png" alt="Crossover">
-            <span>Crossover Apparel</span>
-        </a>
-        <div class="nav-links">
-            <a href="#products" class="nav-link active">Shop</a>
-            <a href="#" class="nav-link" onclick="openZapierChat(); return false;">AI Assistant</a>
-            <button class="nav-btn logout" onclick="logout()">Logout</button>
-        </div>
-    </nav>
+        <!-- ========== Navigation ========== -->
+        <nav class="site-nav">
+            <a class="nav-brand" href="#">
+                <img src="images/crossoverlogo.png" alt="Crossover">
+                <span>Crossover Apparel</span>
+            </a>
+            <div class="nav-links">
+                <a href="#products" class="nav-link active">Shop</a>
+                <a href="#" class="nav-link" onclick="openZapierChat(); return false;">AI Assistant</a>
+                <button class="nav-btn" id="authActionBtn" onclick="handleAuthAction()">Login / Sign Up</button>
+            </div>
+        </nav>
 
-    <!-- ========== Hero Section ========== -->
-    <section class="hero">
-        <div class="hero-badge">
-            <span class="dot"></span> New Collection Live
-        </div>
-        <h1>Your style,<br><span class="highlight">instantly</span> elevated.</h1>
-        <p class="hero-sub">
-            Premium streetwear and apparel curated by AI. Browse, add to cart, and check out — all in one seamless experience.
-        </p>
-        <div class="hero-actions">
-            <a href="#products" class="hero-btn primary">Browse Collection <span class="icon">→</span></a>
-            <a href="#" class="hero-btn secondary" onclick="openZapierChat(); return false;">Ask AI Assistant <span class="icon">✦</span></a>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="arrow"></div>
-        </div>
-    </section>
+        <!-- ========== Hero Section ========== -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="dot"></span> New Collection Live
+            </div>
+            <h1>Your style,<br><span class="highlight">instantly</span> elevated.</h1>
+            <p class="hero-sub">
+                Premium streetwear and apparel curated by AI. Browse, add to cart, and check out — all in one seamless experience.
+            </p>
+            <div class="hero-actions">
+                <a href="#products" class="hero-btn primary">Browse Collection <span class="icon">→</span></a>
+                <button type="button" class="hero-btn secondary" onclick="openZapierChat()">Ask AI Assistant <span class="icon">✦</span></button>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="arrow"></div>
+            </div>
+        </section>
 
-    <!-- ========== Ticker ========== -->
-    <div class="ticker">
-        <div class="ticker-track">
-            <span class="ticker-item">Streetwear</span>
-            <span class="ticker-item">Premium Quality</span>
-            <span class="ticker-item">AI-Powered</span>
-            <span class="ticker-item">Fast Checkout</span>
-            <span class="ticker-item">New Arrivals</span>
-            <span class="ticker-item">Crossover Apparel</span>
-            <span class="ticker-item">Free Shipping $50+</span>
-            <span class="ticker-item">Streetwear</span>
-            <span class="ticker-item">Premium Quality</span>
-            <span class="ticker-item">AI-Powered</span>
-            <span class="ticker-item">Fast Checkout</span>
-            <span class="ticker-item">New Arrivals</span>
-            <span class="ticker-item">Crossover Apparel</span>
-            <span class="ticker-item">Free Shipping $50+</span>
-        </div>
-    </div>
-
-    <!-- ========== Products ========== -->
-    <div class="section-header" id="products">
-        <h2>The Collection.</h2>
-        <p>Explore our curated lineup of premium apparel.</p>
-    </div>
-
-    <div class="product-section">
-        <div class="product-grid">
-            <div class="product">
-                <img src="images/1.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
-                <button class="add-to-cart" data-name="Product 1" data-price="19.99">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/2.jpg" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>$20.00</p>
-                <button class="add-to-cart" data-name="Product 2" data-price="20.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/3.jpg" alt="Product 3">
-                <h3>Product 3</h3>
-                <p>$21.00</p>
-                <button class="add-to-cart" data-name="Product 3" data-price="21.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/4.jpg" alt="Product 4">
-                <h3>Product 4</h3>
-                <p>$22.00</p>
-                <button class="add-to-cart" data-name="Product 4" data-price="22.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/5.jpg" alt="Product 5">
-                <h3>Product 5</h3>
-                <p>$23.00</p>
-                <button class="add-to-cart" data-name="Product 5" data-price="23.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/6.jpg" alt="Product 6">
-                <h3>Product 6</h3>
-                <p>$24.00</p>
-                <button class="add-to-cart" data-name="Product 6" data-price="24.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/7.jpg" alt="Product 7">
-                <h3>Product 7</h3>
-                <p>$25.00</p>
-                <button class="add-to-cart" data-name="Product 7" data-price="25.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/8.jpg" alt="Product 8">
-                <h3>Product 8</h3>
-                <p>$26.00</p>
-                <button class="add-to-cart" data-name="Product 8" data-price="26.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/9.jpg" alt="Product 9">
-                <h3>Product 9</h3>
-                <p>$27.00</p>
-                <button class="add-to-cart" data-name="Product 9" data-price="27.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/10.jpg" alt="Product 10">
-                <h3>Product 10</h3>
-                <p>$28.00</p>
-                <button class="add-to-cart" data-name="Product 10" data-price="28.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/11.jpg" alt="Product 11">
-                <h3>Product 11</h3>
-                <p>$29.00</p>
-                <button class="add-to-cart" data-name="Product 11" data-price="29.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/12.jpg" alt="Product 12">
-                <h3>Product 12</h3>
-                <p>$30.00</p>
-                <button class="add-to-cart" data-name="Product 12" data-price="30.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/13.jpg" alt="Product 13">
-                <h3>Product 13</h3>
-                <p>$31.00</p>
-                <button class="add-to-cart" data-name="Product 13" data-price="31.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/14.jpg" alt="Product 14">
-                <h3>Product 14</h3>
-                <p>$32.00</p>
-                <button class="add-to-cart" data-name="Product 14" data-price="32.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/15.jpg" alt="Product 15">
-                <h3>Product 15</h3>
-                <p>$32.00</p>
-                <button class="add-to-cart" data-name="Product 15" data-price="32.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/16.jpg" alt="Product 16">
-                <h3>Product 16</h3>
-                <p>$33.00</p>
-                <button class="add-to-cart" data-name="Product 16" data-price="33.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/crossoverlogo.png" alt="Product 17">
-                <h3>Product 17</h3>
-                <p>$34.00</p>
-                <button class="add-to-cart" data-name="Product 17" data-price="34.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/crossoverlogo.png" alt="Product 18">
-                <h3>Product 18</h3>
-                <p>$35.00</p>
-                <button class="add-to-cart" data-name="Product 18" data-price="35.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/crossoverlogo.png" alt="Product 19">
-                <h3>Product 19</h3>
-                <p>$30.00</p>
-                <button class="add-to-cart" data-name="Product 19" data-price="30.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/crossoverlogo.png" alt="Product 20">
-                <h3>Product 20</h3>
-                <p>$30.00</p>
-                <button class="add-to-cart" data-name="Product 20" data-price="30.00">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="images/crossoverlogo.png" alt="Product 21">
-                <h3>Product 21</h3>
-                <p>$30.00</p>
-                <button class="add-to-cart" data-name="Product 21" data-price="30.00">Add to Cart</button>
+        <!-- ========== Ticker ========== -->
+        <div class="ticker">
+            <div class="ticker-track">
+                <span class="ticker-item">Streetwear</span>
+                <span class="ticker-item">Premium Quality</span>
+                <span class="ticker-item">AI-Powered</span>
+                <span class="ticker-item">Fast Checkout</span>
+                <span class="ticker-item">New Arrivals</span>
+                <span class="ticker-item">Crossover Apparel</span>
+                <span class="ticker-item">Free Shipping ₱5,000+</span>
+                <span class="ticker-item">Streetwear</span>
+                <span class="ticker-item">Premium Quality</span>
+                <span class="ticker-item">AI-Powered</span>
+                <span class="ticker-item">Fast Checkout</span>
+                <span class="ticker-item">New Arrivals</span>
+                <span class="ticker-item">Crossover Apparel</span>
+                <span class="ticker-item">Free Shipping ₱5,000+</span>
             </div>
         </div>
-    </div>
 
-    <!-- ========== Zapier Chatbot ========== -->
-    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-    <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmmeipjdf00rx10bg7zr8p8ne'></zapier-interfaces-chatbot-embed>
+        <!-- ========== Products ========== -->
+        <div class="section-header" id="products">
+            <h2>The Collection.</h2>
+            <p>Explore our curated lineup of premium apparel.</p>
+        </div>
 
-    <!-- ========== Cart Toggle Button ========== -->
-    <button class="cart-toggle-btn" id="cartToggle" onclick="toggleCart()" aria-label="Open cart">
+        <div class="product-section">
+            <div class="product-grid">
+                <div class="product">
+                    <img src="images/1.jpg" alt="Product 1">
+                    <h3>Product 1</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 1" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/2.jpg" alt="Product 2">
+                    <h3>Product 2</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 2" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/3.jpg" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 3" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/4.jpg" alt="Product 4">
+                    <h3>Product 4</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 4" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/5.jpg" alt="Product 5">
+                    <h3>Product 5</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 5" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/6.jpg" alt="Product 6">
+                    <h3>Product 6</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 6" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/7.jpg" alt="Product 7">
+                    <h3>Product 7</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 7" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/8.jpg" alt="Product 8">
+                    <h3>Product 8</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 8" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/9.jpg" alt="Product 9">
+                    <h3>Product 9</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 9" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/10.jpg" alt="Product 10">
+                    <h3>Product 10</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 10" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/11.jpg" alt="Product 11">
+                    <h3>Product 11</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 11" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/12.jpg" alt="Product 12">
+                    <h3>Product 12</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 12" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/13.jpg" alt="Product 13">
+                    <h3>Product 13</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 13" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/14.jpg" alt="Product 14">
+                    <h3>Product 14</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 14" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/15.jpg" alt="Product 15">
+                    <h3>Product 15</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 15" data-price="499.00">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/16.jpg" alt="Product 16">
+                    <h3>Product 16</h3>
+                    <p>₱499.00</p>
+                    <button class="add-to-cart" data-name="Product 16" data-price="499.00">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Cart Toggle Button ========== -->
+        <button class="cart-toggle-btn" id="cartToggle" onclick="toggleCart()" aria-label="Open cart">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -212,47 +179,168 @@
         <span class="cart-badge" id="cartBadge">0</span>
     </button>
 
-    <!-- ========== Cart Popup Panel ========== -->
-    <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
-        <div class="cart-header">
-            <h2>Your Cart</h2>
-            <span class="cart-count">0 items</span>
-            <button class="cart-close-btn" onclick="toggleCart()" aria-label="Close cart">&#x2715;</button>
-        </div>
-        <div class="cart-columns">
-            <span>Product</span>
-            <span>Price</span>
-            <span>Qty</span>
-            <span>Total</span>
-        </div>
-        <div class="cart-items">
-            <div class="cart-empty">No items added yet.</div>
-        </div>
-        <div class="cart-summary">
-            <div class="cart-summary-row">
-                <span>Overall Total</span>
-                <strong>$0.00</strong>
+        <!-- ========== Cart Popup Panel ========== -->
+        <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <span class="cart-count">0 items</span>
+                <button class="cart-close-btn" onclick="toggleCart()" aria-label="Close cart">&#x2715;</button>
             </div>
-            <button class="checkout-btn">Proceed to Buy</button>
+            <div class="cart-columns">
+                <span>Product</span>
+                <span>Price</span>
+                <span>Qty</span>
+                <span>Total</span>
+            </div>
+            <div class="cart-items">
+                <div class="cart-empty">No items added yet.</div>
+            </div>
+            <div class="cart-summary">
+                <div class="cart-summary-row">
+                    <span>Overall Total</span>
+                    <strong>₱0.00</strong>
+                </div>
+                <button class="checkout-btn">Proceed to Buy</button>
+            </div>
+        </aside>
+
+        <!-- ========== Footer ========== -->
+        <footer class="site-footer">
+            <p>&copy; 2026 Crossover Apparel. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </footer>
+
+        <!-- ========== Google Map Section ========== -->
+        <section class="map-section" style="margin: 40px auto; max-width: 900px;">
+            <h2 style="text-align:center;">Find Us on the Map</h2>
+            <div id="map" style="width:100%;height:400px;border-radius:12px;box-shadow:0 2px 12px #0001;"></div>
+            <div id="map-error" style="color:red;text-align:center;display:none;margin-top:10px;">Map failed to load. Please try again later.</div>
+        </section>
+    </div>
+
+    <!-- ========== Floating Auth Modal ========== -->
+    <div class="auth-modal-overlay" id="authModalOverlay" aria-hidden="true">
+        <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <button class="auth-close" type="button" aria-label="Close" onclick="closeAuthModal()">&times;</button>
+
+            <div class="auth-tabs" role="tablist" aria-label="Authentication tabs">
+                <button id="signinTab" class="auth-tab active" type="button" role="tab" aria-selected="true" onclick="setAuthMode('signin')">Sign In</button>
+                <button id="signupTab" class="auth-tab" type="button" role="tab" aria-selected="false" onclick="setAuthMode('signup')">Sign Up</button>
+            </div>
+
+            <h2 id="authModalTitle">Welcome to Crossover</h2>
+            <p class="auth-subtitle">Sign in or create an account to continue to checkout.</p>
+            <div id="authMessage" class="auth-message" style="display:none;"></div>
+
+            <form id="signinForm" class="auth-form" method="POST" action="login.php" autocomplete="off">
+                <input type="hidden" id="signinRedirect" name="redirect" value="">
+                <div class="auth-field">
+                    <label for="signinUsername">Username</label>
+                    <input type="text" id="signinUsername" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="auth-field">
+                    <label for="signinPassword">Password</label>
+                    <input type="password" id="signinPassword" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-submit">Sign In</button>
+            </form>
+
+            <form id="signupForm" class="auth-form" method="POST" action="register.php" autocomplete="off" style="display:none;">
+                <input type="hidden" id="signupRedirect" name="redirect" value="">
+                <div class="auth-field">
+                    <label for="signupFullname">Full Name</label>
+                    <input type="text" id="signupFullname" name="fullname" placeholder="Enter your full name" required>
+                </div>
+                <div class="auth-field">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="auth-field">
+                    <label for="signupUsername">Username</label>
+                    <input type="text" id="signupUsername" name="username" placeholder="Choose a username" minlength="3" required>
+                </div>
+                <div class="auth-field">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" name="password" placeholder="Create a password" minlength="6" required>
+                </div>
+                <div class="auth-field">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" name="confirm_password" placeholder="Re-enter your password" minlength="6" required>
+                </div>
+                <button type="submit" class="auth-submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== Payment Modal ========== -->
+    <div class="auth-modal-overlay" id="paymentModalOverlay" aria-hidden="true">
+        <div class="auth-modal payment-modal" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+            <button class="auth-close" type="button" aria-label="Close" onclick="closePaymentModal()">&times;</button>
+            <h2 id="paymentModalTitle">Scan to Pay</h2>
+            <p class="auth-subtitle">Use your Instapay app to complete your payment.</p>
+            <div class="qr-placeholder" aria-label="QR code">
+                <img src="images/qr.jpg" alt="Instapay QR" class="qr-image">
+            </div>
+            <button type="button" class="auth-submit" id="paidBtn" onclick="submitPayment()">I have already paid</button>
+        </div>
+    </div>
+
+    <!-- ========== Receipt Modal ========== -->
+    <div class="auth-modal-overlay" id="receiptModalOverlay" aria-hidden="true">
+        <div class="auth-modal receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receiptModalTitle">
+            <button class="auth-close" type="button" aria-label="Close" onclick="closeReceiptModal()">&times;</button>
+            <h2 id="receiptModalTitle">Payment Receipt</h2>
+            <p class="auth-subtitle">Your payment was successfully recorded.</p>
+            <div class="receipt-list">
+                <div class="receipt-row"><span>Sale ID</span><strong id="receiptSaleId">-</strong></div>
+                <div class="receipt-row"><span>Full Name</span><strong id="receiptFullname">-</strong></div>
+                <div class="receipt-row"><span>Email</span><strong id="receiptEmail">-</strong></div>
+                <div class="receipt-row"><span>Username</span><strong id="receiptUsername">-</strong></div>
+                <div class="receipt-row"><span>Total Paid</span><strong id="receiptTotal">-</strong></div>
+                <div class="receipt-row"><span>Paid Through</span><strong id="receiptMethod">Instapay</strong></div>
+                <div class="receipt-row"><span>Paid At</span><strong id="receiptPaidAt">-</strong></div>
+            </div>
+            <button type="button" class="auth-submit" onclick="closeReceiptModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- ========== Chatbot Modal ========== -->
+    <div class="auth-modal-overlay" id="chatbotModalOverlay" aria-hidden="true">
+        <div class="auth-modal chatbot-modal" role="dialog" aria-modal="true" aria-labelledby="chatbotModalTitle">
+            <button class="auth-close" type="button" aria-label="Close chatbot" onclick="closeChatbotModal()">&times;</button>
+            <h2 id="chatbotModalTitle">AI Assistant</h2>
+            <iframe class="chatbot-frame" src="https://interfaces.zapier.com/embed/chatbot/cmmeipjdf00rx10bg7zr8p8ne" title="Zapier AI Assistant" loading="lazy" allow="clipboard-write"></iframe>
+        </div>
+    </div>
+
+    <!-- ========== Profile Drawer ========== -->
+    <div class="profile-drawer-overlay" id="profileDrawerOverlay" aria-hidden="true" onclick="closeProfileDrawer()"></div>
+    <aside class="profile-drawer" id="profileDrawer" aria-label="User profile panel">
+        <div class="profile-drawer-header">
+            <h3>Your Profile</h3>
+            <button class="auth-close" type="button" aria-label="Close profile" onclick="closeProfileDrawer()">&times;</button>
+        </div>
+        <div class="profile-drawer-body">
+            <div class="profile-row"><span>Full Name</span><strong id="profileFullname">-</strong></div>
+            <div class="profile-row"><span>Email</span><strong id="profileEmail">-</strong></div>
+            <div class="profile-row"><span>Username</span><strong id="profileUsername">-</strong></div>
+            <div class="profile-row"><span>Role</span><strong id="profileRole">-</strong></div>
+
+            <div class="profile-history-block">
+                <h4>Order History</h4>
+                <div id="profileOrderHistory" class="profile-history-list">
+                    <div class="profile-history-empty">No orders yet.</div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-drawer-footer">
+            <button class="profile-logout-btn" type="button" onclick="logout()">Logout</button>
         </div>
     </aside>
-
-    <!-- ========== Footer ========== -->
-    <footer class="site-footer">
-        <p>&copy; 2026 Crossover Apparel. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Contact</a>
-        </div>
-    </footer>
-
-    <!-- ========== Google Map Section ========== -->
-    <section class="map-section" style="margin: 40px auto; max-width: 900px;">
-        <h2 style="text-align:center;">Find Us on the Map</h2>
-        <div id="map" style="width:100%;height:400px;border-radius:12px;box-shadow:0 2px 12px #0001;"></div>
-        <div id="map-error" style="color:red;text-align:center;display:none;margin-top:10px;">Map failed to load. Please try again later.</div>
-    </section>
 
     <!-- ========== Scripts ========== -->
     <script>
@@ -266,12 +354,211 @@
             return null;
         }
 
-        if (!getCookie('web_system_user')) {
-            window.location.replace('login.html');
+        function isLoggedIn() {
+            return !!getCookie('web_system_user');
+        }
+
+        function updateAuthButton() {
+            const authActionBtn = document.getElementById('authActionBtn');
+            if (!authActionBtn) return;
+
+            if (isLoggedIn()) {
+                authActionBtn.textContent = 'Profile';
+                authActionBtn.classList.remove('logout');
+            } else {
+                authActionBtn.textContent = 'Login / Sign Up';
+                authActionBtn.classList.remove('logout');
+            }
+        }
+
+        function handleAuthAction() {
+            if (isLoggedIn()) {
+                openProfileDrawer();
+                return;
+            }
+            openAuthModal('signin');
+        }
+
+        async function loadProfileData() {
+            try {
+                const response = await fetch('profile_data.php', {
+                    method: 'GET'
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to load profile.');
+                }
+                const data = await response.json();
+                if (!data.success) {
+                    throw new Error(data.message || 'Unable to load profile data.');
+                }
+
+                document.getElementById('profileFullname').textContent = data.profile.fullname || '-';
+                document.getElementById('profileEmail').textContent = data.profile.email || '-';
+                document.getElementById('profileUsername').textContent = data.profile.username || '-';
+                document.getElementById('profileRole').textContent = data.profile.role || '-';
+
+                const historyEl = document.getElementById('profileOrderHistory');
+                historyEl.innerHTML = '';
+
+                if (data.order_history && data.order_history.length > 0) {
+                    data.order_history.forEach(order => {
+                        const card = document.createElement('div');
+                        card.className = 'profile-history-item';
+                        card.innerHTML = `
+                            <div class="profile-history-top">
+                                <strong>#${order.id}</strong>
+                                <span>${order.created_at}</span>
+                            </div>
+                            <div class="profile-history-bottom">
+                                <span>${order.payment_method}</span>
+                                <strong>₱${Number(order.total_amount).toFixed(2)}</strong>
+                            </div>
+                        `;
+                        historyEl.appendChild(card);
+                    });
+                } else {
+                    historyEl.innerHTML = '<div class="profile-history-empty">No orders yet.</div>';
+                }
+            } catch (err) {
+                document.getElementById('profileFullname').textContent = 'Unavailable';
+                document.getElementById('profileEmail').textContent = 'Unavailable';
+                document.getElementById('profileUsername').textContent = 'Unavailable';
+                document.getElementById('profileRole').textContent = 'Unavailable';
+                document.getElementById('profileOrderHistory').innerHTML = '<div class="profile-history-empty">Unable to load order history.</div>';
+            }
+        }
+
+        function openProfileDrawer() {
+            const panel = document.getElementById('profileDrawer');
+            const overlay = document.getElementById('profileDrawerOverlay');
+
+            panel.classList.add('open');
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('auth-modal-open');
+            loadProfileData();
+        }
+
+        function closeProfileDrawer() {
+            const panel = document.getElementById('profileDrawer');
+            const overlay = document.getElementById('profileDrawerOverlay');
+
+            panel.classList.remove('open');
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            if (!document.getElementById('authModalOverlay').classList.contains('open') && !document.getElementById('paymentModalOverlay').classList.contains('open') && !document.getElementById('receiptModalOverlay').classList.contains('open')) {
+                document.body.classList.remove('auth-modal-open');
+            }
+        }
+
+        function setRedirectIntent(intent) {
+            const val = intent || '';
+            document.getElementById('signinRedirect').value = val;
+            document.getElementById('signupRedirect').value = val;
+        }
+
+        function setAuthMode(mode) {
+            const signinForm = document.getElementById('signinForm');
+            const signupForm = document.getElementById('signupForm');
+            const signinTab = document.getElementById('signinTab');
+            const signupTab = document.getElementById('signupTab');
+
+            if (mode === 'signup') {
+                signinForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                signinTab.classList.remove('active');
+                signupTab.classList.add('active');
+                signinTab.setAttribute('aria-selected', 'false');
+                signupTab.setAttribute('aria-selected', 'true');
+            } else {
+                signinForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                signinTab.classList.add('active');
+                signupTab.classList.remove('active');
+                signinTab.setAttribute('aria-selected', 'true');
+                signupTab.setAttribute('aria-selected', 'false');
+            }
+        }
+
+        function openAuthModal(mode = 'signin', intent = '') {
+            const overlay = document.getElementById('authModalOverlay');
+            setAuthMode(mode);
+            setRedirectIntent(intent);
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('auth-modal-open');
+        }
+
+        function closeAuthModal() {
+            const overlay = document.getElementById('authModalOverlay');
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('auth-modal-open');
+        }
+
+        function openPaymentModal() {
+            const overlay = document.getElementById('paymentModalOverlay');
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('auth-modal-open');
+        }
+
+        function closePaymentModal() {
+            const overlay = document.getElementById('paymentModalOverlay');
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            if (!document.getElementById('authModalOverlay').classList.contains('open') && !document.getElementById('receiptModalOverlay').classList.contains('open')) {
+                document.body.classList.remove('auth-modal-open');
+            }
+        }
+
+        function openReceiptModal(receipt) {
+            document.getElementById('receiptSaleId').textContent = '#' + receipt.sale_id;
+            document.getElementById('receiptFullname').textContent = receipt.fullname;
+            document.getElementById('receiptEmail').textContent = receipt.email;
+            document.getElementById('receiptUsername').textContent = receipt.username;
+            document.getElementById('receiptTotal').textContent = `₱${Number(receipt.total_paid).toFixed(2)}`;
+            document.getElementById('receiptMethod').textContent = receipt.payment_method;
+            document.getElementById('receiptPaidAt').textContent = receipt.paid_at;
+
+            const overlay = document.getElementById('receiptModalOverlay');
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('auth-modal-open');
+        }
+
+        function closeReceiptModal() {
+            const overlay = document.getElementById('receiptModalOverlay');
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            if (!document.getElementById('authModalOverlay').classList.contains('open') && !document.getElementById('paymentModalOverlay').classList.contains('open')) {
+                document.body.classList.remove('auth-modal-open');
+            }
+        }
+
+        function openChatbotModal() {
+            const overlay = document.getElementById('chatbotModalOverlay');
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('auth-modal-open');
+        }
+
+        function closeChatbotModal() {
+            const overlay = document.getElementById('chatbotModalOverlay');
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            if (!document.getElementById('authModalOverlay').classList.contains('open') && !document.getElementById('paymentModalOverlay').classList.contains('open') && !document.getElementById('receiptModalOverlay').classList.contains('open') && !document.getElementById('profileDrawer').classList.contains('open')) {
+                document.body.classList.remove('auth-modal-open');
+            }
+        }
+
+        function formatPeso(amount) {
+            return `₱${amount.toFixed(2)}`;
         }
 
         // Logout
         function logout() {
+            closeProfileDrawer();
             document.cookie = 'web_system_user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             localStorage.removeItem('cart');
             window.location.href = 'logout.php';
@@ -322,7 +609,7 @@
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<div class="cart-empty">No items added yet.</div>';
                 cartCountSpan.textContent = '0 items';
-                cartSummaryRow.textContent = '$0.00';
+                cartSummaryRow.textContent = '₱0.00';
             } else {
                 cart.forEach((item, i) => {
                     const sub = item.price * item.quantity;
@@ -333,19 +620,19 @@
                     el.innerHTML = `
                     <div class="cart-item-content">
                         <span class="item-name">${item.name}</span>
-                        <span class="item-price">$${item.price.toFixed(2)}</span>
+                        <span class="item-price">${formatPeso(item.price)}</span>
                         <div class="item-quantity">
                             <button class="qty-btn" onclick="changeQty(${i},-1)">-</button>
                             <span>${item.quantity}</span>
                             <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
                         </div>
-                        <span class="item-total">$${sub.toFixed(2)}</span>
+                        <span class="item-total">${formatPeso(sub)}</span>
                         <button class="remove-btn" onclick="removeItem(${i})">&times;</button>
                     </div>`;
                     cartItemsContainer.appendChild(el);
                 });
                 cartCountSpan.textContent = `${count} item${count !== 1 ? 's' : ''}`;
-                cartSummaryRow.textContent = `$${total.toFixed(2)}`;
+                cartSummaryRow.textContent = formatPeso(total);
             }
             const badge = document.getElementById('cartBadge');
             if (badge) {
@@ -367,15 +654,148 @@
             renderCart();
         };
 
+        async function submitPayment() {
+            const paidBtn = document.getElementById('paidBtn');
+            if (!isLoggedIn()) {
+                closePaymentModal();
+                openAuthModal('signin', 'checkout');
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add items before checkout.');
+                closePaymentModal();
+                return;
+            }
+
+            try {
+                paidBtn.disabled = true;
+                paidBtn.textContent = 'Processing...';
+
+                const response = await fetch('process_payment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        cart
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Payment failed.');
+                }
+
+                closePaymentModal();
+                openReceiptModal(data.receipt);
+                cart = [];
+                saveCart();
+                renderCart();
+            } catch (err) {
+                alert(err.message || 'Unable to process payment right now.');
+            } finally {
+                paidBtn.disabled = false;
+                paidBtn.textContent = 'I have already paid';
+            }
+        }
+
+        document.querySelector('.checkout-btn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add items before checkout.');
+                return;
+            }
+
+            if (!isLoggedIn()) {
+                openAuthModal('signin', 'checkout');
+                return;
+            }
+
+            openPaymentModal();
+        });
+
+        updateAuthButton();
         renderCart();
+
+        // Modal interactions
+        document.getElementById('authModalOverlay').addEventListener('click', function(e) {
+            if (e.target.id === 'authModalOverlay') {
+                closeAuthModal();
+            }
+        });
+
+        document.getElementById('paymentModalOverlay').addEventListener('click', function(e) {
+            if (e.target.id === 'paymentModalOverlay') {
+                closePaymentModal();
+            }
+        });
+
+        document.getElementById('receiptModalOverlay').addEventListener('click', function(e) {
+            if (e.target.id === 'receiptModalOverlay') {
+                closeReceiptModal();
+            }
+        });
+
+        document.getElementById('chatbotModalOverlay').addEventListener('click', function(e) {
+            if (e.target.id === 'chatbotModalOverlay') {
+                closeChatbotModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAuthModal();
+                closePaymentModal();
+                closeReceiptModal();
+                closeChatbotModal();
+                closeProfileDrawer();
+            }
+        });
+
+        // Show server feedback in modal using query params
+        (function applyAuthStateFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const auth = params.get('auth');
+            const error = params.get('error');
+            const success = params.get('success');
+            const redirect = params.get('redirect') || '';
+            const msg = document.getElementById('authMessage');
+
+            if (redirect === 'checkout' && isLoggedIn() && !error) {
+                openPaymentModal();
+                const cleanCheckoutUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, '', cleanCheckoutUrl);
+                return;
+            }
+
+            if (auth && !error && !success) {
+                openAuthModal(auth === 'signup' ? 'signup' : 'signin', redirect);
+                const cleanAuthUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, '', cleanAuthUrl);
+                return;
+            }
+
+            if (error || success) {
+                msg.style.display = 'block';
+                msg.classList.remove('error', 'success');
+                if (error) {
+                    msg.classList.add('error');
+                    msg.textContent = error;
+                    openAuthModal(auth === 'signup' ? 'signup' : 'signin', redirect);
+                } else {
+                    msg.classList.add('success');
+                    msg.textContent = success;
+                    openAuthModal(auth === 'signup' ? 'signup' : 'signin', redirect);
+                }
+
+                const cleanUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, '', cleanUrl);
+            }
+        })();
 
         // Open Zapier chatbot
         function openZapierChat() {
-            const embed = document.querySelector('zapier-interfaces-chatbot-embed');
-            if (embed && embed.shadowRoot) {
-                const btn = embed.shadowRoot.querySelector('button');
-                if (btn) btn.click();
-            }
+            openChatbotModal();
         }
 
         // Smooth scroll for nav links

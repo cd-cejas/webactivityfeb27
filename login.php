@@ -13,14 +13,31 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$error = "";
+$redirect = ($_POST["redirect"] ?? "") === "checkout" ? "checkout" : "";
+
+function redirect_home($auth, $messageKey = "", $message = "", $redirect = "") {
+    $query = "auth=" . urlencode($auth);
+    if (!empty($messageKey) && !empty($message)) {
+        $query .= "&" . $messageKey . "=" . urlencode($message);
+    }
+    if (!empty($redirect)) {
+        $query .= "&redirect=" . urlencode($redirect);
+    }
+    header("Location: homepage.html?" . $query);
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    redirect_home("signin");
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST["username"] ?? "");
     $password = $_POST["password"] ?? "";
 
     if (empty($username)) {
-        $error = "Please enter your username.";
+        $conn->close();
+        redirect_home("signin", "error", "Please enter your username.", $redirect);
     } else {
         $stmt = $conn->prepare("SELECT id, fullname, username, password, role FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
@@ -43,7 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header("Location: force_password_change.php");
                 exit();
             } elseif (empty($password)) {
-                $error = "Please enter your password.";
+                $stmt->close();
+                $conn->close();
+                redirect_home("signin", "error", "Please enter your password.", $redirect);
             } elseif (password_verify($password, $user["password"])) {
                 // Set session variables
                 $_SESSION["user_id"] = $user["id"];
@@ -59,50 +78,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     header("Location: admin_dashboard.php");
                     exit();
                 } else {
+                    if ($redirect === "checkout") {
+                        header("Location: homepage.html?success=" . urlencode("Signed in successfully. You can now proceed to checkout.") . "&redirect=checkout");
+                        exit();
+                    }
                     header("Location: homepage.html");
                     exit();
                 }
             } else {
-                $error = "Invalid username or password.";
+                $stmt->close();
+                $conn->close();
+                redirect_home("signin", "error", "Invalid username or password.", $redirect);
             }
         } else {
-            $error = "Invalid username or password.";
+            $stmt->close();
+            $conn->close();
+            redirect_home("signin", "error", "Invalid username or password.", $redirect);
         }
         $stmt->close();
     }
 }
 
 $conn->close();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In — Crossover Apparel</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="overlay-backdrop"></div>
-    <div class="container">
-        <div class="card">
-            <div class="brand">
-                <img src="images/crossoverlogo.png" alt="Crossover" class="brand-icon">
-                <h1>Sign In Failed</h1>
-                <p>We couldn't verify your credentials</p>
-            </div>
-
-            <?php if (!empty($error)): ?>
-                <div class="alert alert-error">
-                    <?php echo htmlspecialchars($error); ?>
-                </div>
-                <a href="login.html" class="btn btn-primary">Try Again</a>
-            <?php endif; ?>
-
-            <div class="form-footer">
-                Don't have an account? <a href="signup.html">Create one</a>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+redirect_home("signin");

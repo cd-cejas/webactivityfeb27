@@ -11,8 +11,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$error = "";
-$success = "";
+function redirect_home($auth, $messageKey = "", $message = "", $redirect = "") {
+    $query = "auth=" . urlencode($auth);
+    if (!empty($messageKey) && !empty($message)) {
+        $query .= "&" . $messageKey . "=" . urlencode($message);
+    }
+    if (!empty($redirect)) {
+        $query .= "&redirect=" . urlencode($redirect);
+    }
+    header("Location: homepage.html?" . $query);
+    exit();
+}
+
+$redirect = ($_POST["redirect"] ?? "") === "checkout" ? "checkout" : "";
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    redirect_home("signup");
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $fullname = trim($_POST["fullname"] ?? "");
@@ -23,23 +38,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Validate empty fields
     if (empty($fullname) || empty($email) || empty($username) || empty($password) || empty($confirm_password)) {
-        $error = "All fields are required.";
+        $conn->close();
+        redirect_home("signup", "error", "All fields are required.", $redirect);
     }
     // Validate email format
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Please enter a valid email address.";
+        $conn->close();
+        redirect_home("signup", "error", "Please enter a valid email address.", $redirect);
     }
     // Validate username length
     elseif (strlen($username) < 3) {
-        $error = "Username must be at least 3 characters.";
+        $conn->close();
+        redirect_home("signup", "error", "Username must be at least 3 characters.", $redirect);
     }
     // Validate password length
     elseif (strlen($password) < 6) {
-        $error = "Password must be at least 6 characters.";
+        $conn->close();
+        redirect_home("signup", "error", "Password must be at least 6 characters.", $redirect);
     }
     // Check if passwords match
     elseif ($password !== $confirm_password) {
-        $error = "Passwords do not match.";
+        $conn->close();
+        redirect_home("signup", "error", "Passwords do not match.", $redirect);
     } else {
         // Check if username already exists
         $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
@@ -48,7 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $error = "Username already taken. Please choose another.";
+            $stmt->close();
+            $conn->close();
+            redirect_home("signup", "error", "Username already taken. Please choose another.", $redirect);
         } else {
             // Check if email already exists
             $stmt2 = $conn->prepare("SELECT id FROM users WHERE email = ?");
@@ -57,7 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt2->store_result();
 
             if ($stmt2->num_rows > 0) {
-                $error = "Email already registered.";
+                $stmt2->close();
+                $stmt->close();
+                $conn->close();
+                redirect_home("signup", "error", "Email already registered.", $redirect);
             } else {
                 // Hash password and insert user
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -67,11 +92,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $insert->bind_param("sssss", $fullname, $email, $username, $hashed_password, $role);
 
                 if ($insert->execute()) {
-                    $success = "Registration successful! You can now sign in.";
+                    $insert->close();
+                    $stmt2->close();
+                    $stmt->close();
+                    $conn->close();
+                    redirect_home("signin", "success", "Registration successful! You can now sign in.", $redirect);
                 } else {
-                    $error = "Something went wrong. Please try again.";
+                    $insert->close();
+                    $stmt2->close();
+                    $stmt->close();
+                    $conn->close();
+                    redirect_home("signup", "error", "Something went wrong. Please try again.", $redirect);
                 }
-                $insert->close();
             }
             $stmt2->close();
         }
@@ -80,51 +112,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 $conn->close();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration — Crossover Apparel</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="overlay-backdrop"></div>
-    <div class="container">
-        <div class="card">
-            <div class="brand">
-                <img src="images/crossoverlogo.png" alt="Crossover" class="brand-icon">
-                <?php if (!empty($success)): ?>
-                    <h1>Success!</h1>
-                    <p>Your account has been created</p>
-                <?php else: ?>
-                    <h1>Registration Failed</h1>
-                    <p>Something went wrong</p>
-                <?php endif; ?>
-            </div>
-
-            <?php if (!empty($success)): ?>
-                <div class="alert alert-success">
-                    <?php echo htmlspecialchars($success); ?>
-                </div>
-                <a href="login.html" class="btn btn-primary">Go to Sign In</a>
-            <?php elseif (!empty($error)): ?>
-                <div class="alert alert-error">
-                    <?php echo htmlspecialchars($error); ?>
-                </div>
-                <a href="signup.html" class="btn btn-secondary">Try Again</a>
-            <?php else: ?>
-                <div class="alert alert-error">
-                    Invalid request.
-                </div>
-                <a href="signup.html" class="btn btn-secondary">Go to Sign Up</a>
-            <?php endif; ?>
-
-            <div class="form-footer">
-                <a href="login.html">Back to Sign In</a>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+redirect_home("signup");
